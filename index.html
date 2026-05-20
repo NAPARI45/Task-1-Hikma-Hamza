@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lune Pool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <header class="app-header">
+            <h1>Lune Pool 🌙</h1>
+        </header>
+    </div>
+
+    <!-- TOP NAV (mobile) -->
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+        <button class="bnav-btn active" data-section="dashboard">🏠<span>Home</span></button>
+        <button class="bnav-btn" data-section="calendar">📅<span>Calendar</span></button>
+        <button class="bnav-btn" data-section="log">✏️<span>Log</span></button>
+        <button class="bnav-btn" data-section="history">📊<span>History</span></button>
+    </nav>
+
+    <!-- APP LAYOUT -->
+    <div class="app-layout">
+
+        <!-- MAIN CONTENT — all four pages live here -->
+        <main class="main-content">
+
+            <!-- ── PAGE 1: DASHBOARD ── -->
+            <section id="dashboard" class="page active">
+
+                <h1 id="greeting">Good morning 🌸</h1>
+
+                <!-- Cycle status card -->
+                <div class="status-card">
+                    <div class="cycle-ring" id="cycleRing">
+                        <div class="ring-inner">
+                            <span class="ring-day" id="ringDay">—</span>
+                            <span class="ring-sub">of cycle</span>
+                        </div>
+                    </div>
+
+                    <div class="cycle-info">
+                        <div class="info-row">
+                            <span class="info-label">Next period</span>
+                            <span class="info-value" id="nextPeriodVal">—</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Ovulation est.</span>
+                            <span class="info-value" id="ovulationVal">—</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Current phase</span>
+                            <span class="info-value" id="phaseVal">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="primary-btn" onclick="showSection('log')">Log Today</button>
+
+                <div class="tip-card" id="tipCard">
+                    <p>Log your first period to start tracking. 🌸</p>
+                </div>
+
+            </section>
+
+
+            <!-- ── PAGE 2: CALENDAR ── -->
+            <section id="calendar" class="page">
+
+                <div class="cal-header">
+                    <button class="cal-nav-btn" id="prevMonth" aria-label="Previous month">‹</button>
+                    <h2 id="calMonthYear">May 2026</h2>
+                    <button class="cal-nav-btn" id="nextMonth" aria-label="Next month">›</button>
+                </div>
+
+                <div class="cal-legend">
+                    <span class="legend-item"><span class="dot dot-period"></span> Period</span>
+                    <span class="legend-item"><span class="dot dot-ovulation"></span> Ovulation</span>
+                    <span class="legend-item"><span class="dot dot-fertile"></span> Fertile</span>
+                    <span class="legend-item"><span class="dot dot-predicted"></span> Predicted</span>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid"></div>
+
+            </section>
+
+
+            <!-- ── PAGE 3: LOG ── -->
+            <section id="log" class="page">
+
+                <h2>Log your period</h2>
+
+                <div class="form-card">
+                    <h3>Dates</h3>
+                    <div class="form-row">
+                        <label for="startDate">Period Start Date</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div class="form-row">
+                        <label for="endDate">Period End Date <span class="optional">Leave blank if ongoing</span></label>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Flow intensity</h3>
+                    <div class="pill-group" id="flowGroup">
+                        <button class="pill" data-value="spotting">Spotting</button>
+                        <button class="pill" data-value="light">Light</button>
+                        <button class="pill" data-value="medium">Medium</button>
+                        <button class="pill" data-value="heavy">Heavy</button>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Cramps</h3>
+                    <div class="pill-group" id="crampsGroup">
+                        <button class="pill" data-value="none">None</button>
+                        <button class="pill" data-value="mild">Mild</button>
+                        <button class="pill" data-value="moderate">Moderate</button>
+                        <button class="pill" data-value="severe">Severe</button>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Mood</h3>
+                    <div class="pill-group" id="moodGroup">
+                        <button class="pill" data-value="happy">😊 Happy</button>
+                        <button class="pill" data-value="neutral">😐 Neutral</button>
+                        <button class="pill" data-value="sad">😢 Sad</button>
+                        <button class="pill" data-value="anxious">😰 Anxious</button>
+                        <button class="pill" data-value="irritable">😠 Irritable</button>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3>Notes</h3>
+                    <textarea id="notes" rows="3" placeholder="Any other symptoms or things you want to remember..."></textarea>
+                </div>
+
+                <button class="primary-btn" id="saveLogBtn">Save Log</button>
+                <p class="save-message" id="saveMsg"></p>
+
+            </section>
+
+
+            <!-- ── PAGE 4: HISTORY ── -->
+            <section id="history" class="page">
+
+                <h2>Cycle history</h2>
+
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <span class="stat-num" id="statCycles">0</span>
+                        <span class="stat-label">Cycles logged</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="statAvgCycle">—</span>
+                        <span class="stat-label">Avg cycle length</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" id="statAvgPeriod">—</span>
+                        <span class="stat-label">Avg period length</span>
+                    </div>
+                </div>
+
+                <div id="cycleList">
+                    <p class="empty-msg">No cycles logged yet. Head to Log to get started! 🌸</p>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
